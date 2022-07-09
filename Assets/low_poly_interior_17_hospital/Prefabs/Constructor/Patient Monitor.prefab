@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1003561339710751392}
   - component: {fileID: 70252838910581214}
   m_Layer: 0
-  m_Name: hospital.758
+  m_Name: Patient Monitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
