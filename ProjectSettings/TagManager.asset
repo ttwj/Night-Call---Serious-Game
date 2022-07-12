@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Clock
   - EnergyLevel
+  - Food
   layers:
   - Default
   - TransparentFX

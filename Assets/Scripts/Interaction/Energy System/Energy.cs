@@ -6,6 +6,7 @@ using TMPro;
 public class Energy : MonoBehaviour
 {
     private TextMeshProUGUI textEnergy;
+    public bool isEnergyUpdated;
     public int energyLevel;
     GameObject clock;
 
@@ -14,8 +15,9 @@ public class Energy : MonoBehaviour
     {
         textEnergy = GetComponent<TextMeshProUGUI>();
         energyLevel = 100;
-        textEnergy.text = energyLevel.ToString();
+        textEnergy.text = energyLevel.ToString() + "/100";
         clock = GameObject.FindGameObjectWithTag("Clock");
+        isEnergyUpdated = true;
     }
 
     // Update is called once per frame
@@ -23,8 +25,17 @@ public class Energy : MonoBehaviour
     {
         if (clock.GetComponent<Clock>().minusHealth) {
             energyLevel -= 1;
-            textEnergy.text = energyLevel.ToString();
+            textEnergy.text = energyLevel.ToString() + "/100";
             clock.GetComponent<Clock>().minusHealth = false;
+        }
+        if (!isEnergyUpdated)
+        {
+            if (energyLevel > 100)
+            {
+                energyLevel = 100;
+            }
+            textEnergy.text = energyLevel.ToString() + "/100";
+            isEnergyUpdated = true;
         }
     }
 }
