@@ -15,8 +15,10 @@ public class EquipmentInteraction : MonoBehaviour
     private Image activeImage;
     private Vector3 cameraPos;
     private GameObject target;
+    private Button fluidAmt1, fluidAmt2, fluidAmt3, fluidAmt4;
     private string selectedObj;
     public string ongoingTask;
+    private int fluidAmtSelected;
 
     //list of tasks:
     //  [IVbagInjection, FinishedSelectingVial]
@@ -24,6 +26,19 @@ public class EquipmentInteraction : MonoBehaviour
 
     void Start()
     {
+        fluidAmt1 = GameObject.Find("250mL").GetComponent<Button>();
+        fluidAmt2 = GameObject.Find("750mL").GetComponent<Button>();
+        fluidAmt3 = GameObject.Find("1500mL").GetComponent<Button>();
+        fluidAmt4 = GameObject.Find("2500mL").GetComponent<Button>();
+
+        fluidAmtButtonSetInactive();
+
+        fluidAmt1.onClick.AddListener(fluidAmt1Clicked);
+        fluidAmt2.onClick.AddListener(fluidAmt2Clicked);
+        fluidAmt3.onClick.AddListener(fluidAmt3Clicked);
+        fluidAmt4.onClick.AddListener(fluidAmt4Clicked);
+
+
         foreach (Image i in PatientMonitorScreen)
         {
             i.enabled = false;
@@ -36,7 +51,7 @@ public class EquipmentInteraction : MonoBehaviour
         anim = GameObject.Find("Syringe").GetComponent<Animator>();
 
         closeButtonX.gameObject.SetActive(false);
-        closeButtonX.onClick.AddListener(closeImage);
+        closeButtonX.onClick.AddListener(closeCanvas);
     }
     void Update()
     {
@@ -63,6 +78,7 @@ public class EquipmentInteraction : MonoBehaviour
                 if (hit.transform.gameObject.name == "Syringe" && ongoingTask == "FinishedSelectingVial")
                 {
                     anim.Play("SyringeAnim");
+                    //Camera.main.transform.position = cameraPos;
                 }
 
                 Debug.Log(hit.transform.gameObject.name);
@@ -77,15 +93,22 @@ public class EquipmentInteraction : MonoBehaviour
         closeButtonX.gameObject.SetActive(true);
     }
 
-    void closeImage()
+    void closeCanvas()
     {
-        closeButtonX.gameObject.SetActive(false);
-        activeImage.enabled = false;
-        activeImage = null;
+        if (activeImage != null)
+        {
+            closeButtonX.gameObject.SetActive(false);
+            activeImage.enabled = false;
+            activeImage = null;
+        }
+
+        fluidAmtButtonSetInactive();
+
     }
 
     void IVbagInjection()
     {
+        /*
         cameraPos = Camera.main.transform.position;
         target = GameObject.Find("MedicationVials");
         changeCamPos(target);
@@ -94,6 +117,11 @@ public class EquipmentInteraction : MonoBehaviour
         instructions.enabled = true;
 
         ongoingTask = "IVbagInjection";
+        */
+
+        fluidAmtButtonSetActive();
+        closeButtonX.gameObject.SetActive(true);
+
     }
 
     void IVbagInjectionCont(string selectedObj)
@@ -174,5 +202,51 @@ public class EquipmentInteraction : MonoBehaviour
     {
         Camera.main.transform.position = target.transform.position + new Vector3(0.8f, 0.3f, 0);
         Camera.main.transform.LookAt(target.transform);
+    }
+
+    void fluidAmtButtonSetInactive()
+    {
+        fluidAmt1.gameObject.SetActive(false);
+        fluidAmt2.gameObject.SetActive(false);
+        fluidAmt3.gameObject.SetActive(false);
+        fluidAmt4.gameObject.SetActive(false);
+    }
+
+    void fluidAmtButtonSetActive()
+    {
+        fluidAmt1.gameObject.SetActive(true);
+        fluidAmt2.gameObject.SetActive(true);
+        fluidAmt3.gameObject.SetActive(true);
+        fluidAmt4.gameObject.SetActive(true);
+    }
+
+    //the amount of fluid selected for the IV drip bag
+
+    void fluidAmt1Clicked()
+    {
+        fluidAmtSelected = 250;
+        fluidAmtButtonSetInactive();
+        closeButtonX.gameObject.SetActive(false);
+    }
+
+    void fluidAmt2Clicked()
+    {
+        fluidAmtSelected = 750;
+        fluidAmtButtonSetInactive();
+        closeButtonX.gameObject.SetActive(false);
+    }
+
+    void fluidAmt3Clicked()
+    {
+        fluidAmtSelected = 1500;
+        fluidAmtButtonSetInactive();
+        closeButtonX.gameObject.SetActive(false);
+    }
+
+    void fluidAmt4Clicked()
+    {
+        fluidAmtSelected = 2500;
+        fluidAmtButtonSetInactive();
+        closeButtonX.gameObject.SetActive(false);
     }
 }
