@@ -8,6 +8,8 @@ TagManager:
   - EnergyLevel
   - Food
   - Prompt
+  - Vending
+  - Bed
   layers:
   - Default
   - TransparentFX
