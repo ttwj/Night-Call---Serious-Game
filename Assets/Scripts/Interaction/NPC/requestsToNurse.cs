@@ -23,6 +23,7 @@ public class requestsToNurse : MonoBehaviour
                 if (hit.transform.gameObject.CompareTag("Nurse"))
                 {
                     Debug.Log("Player clicked on nurse.");
+                    
                 }
             }
         }
