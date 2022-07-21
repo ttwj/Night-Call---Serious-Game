@@ -59,68 +59,8 @@ public class npcCollision : MonoBehaviour
         keyOptionFive = Input.GetKeyDown(KeyCode.Alpha5); // treatment 2
         keyHelp = Input.GetKeyDown(KeyCode.H); // help
         keySwitch = Input.GetKeyDown(KeyCode.C); // switch status
-        
-        // // Cases for text to appear
-        // if (keyOptionOne)
-        //     {
-        //         canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = textDatabase["history"];
-        //     }
-        // if (keyOptionThree)
-        //     {
-        //         canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = textDatabase["treatmentChoice"];
-        //     }
-        // if (keySwitch)
-        //     {
-        //         helpCount = 2;
-        //         if (patientStatus == "High Blood Pressure") {
-        //             patientStatus = "Pneumonia";
-        //             canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Switched to pneumonia case";
-        //         }
-        //         else if (patientStatus == "Pneumonia") {
-        //             patientStatus = "High Blood Pressure";
-        //             canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Switched to high blood pressure case";
-        //         }
-        //     }
 
-        // if (patientStatus == "High Blood Pressure") {
-        //     if (keyOptionTwo)
-        //         {
-        //             canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = textHBPDatabase["condition"];
-        //         }
-        //     if (keyOptionFour)
-        //         {
-        //             canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = textHBPDatabase["drugNifedipine60mg"];
-        //         }
-        //     if (keyHelp)
-        //         {
-        //             canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = helpHBP[helpCount];
-        //             if (helpCount > 0) {
-        //                 helpCount -= 1;
-        //             }
-        //         }
-        // }
-
-        // if (patientStatus == "Pneumonia") {
-        //     if (keyOptionTwo)
-        //         {
-        //             canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = textPneumoniaDatabase["condition"];
-        //         }
-        //     if (keyOptionFour)
-        //         {
-        //             canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = textPneumoniaDatabase["oxygen3l"];
-        //         }
-        //     if (keyOptionFive)
-        //         {
-        //             canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = textPneumoniaDatabase["fluid250ml"];
-        //         }
-        //     if (keyHelp)
-        //         {
-        //             canvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = helpPneumonia[helpCount];
-        //             if (helpCount > 0) {
-        //                 helpCount -= 1;
-        //             }
-        //         }
-        // }
+        ShowTextOption(keyOptionOne, keyOptionTwo, keyOptionThree, keyOptionFour, keyOptionFive, keyHelp, keySwitch);
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -143,7 +83,7 @@ public class npcCollision : MonoBehaviour
             // }
         }
     
-    private void ShowTextOption(keyOptionOne, keyOptionTwo, keyOptionThree, keyOptionFour, keyOptionFive, keyHelp, keySwitch) {
+    private void ShowTextOption(bool keyOptionOne, bool keyOptionTwo, bool keyOptionThree, bool keyOptionFour, bool keyOptionFive, bool keyHelp, bool keySwitch) {
             // Cases for text to appear
             if (keyOptionOne)
                 {
