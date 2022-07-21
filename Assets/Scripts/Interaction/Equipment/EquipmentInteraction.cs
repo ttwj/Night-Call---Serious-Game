@@ -118,9 +118,14 @@ public class EquipmentInteraction : MonoBehaviour
 
         ongoingTask = "IVbagInjection";
         */
+        
+        
 
+        
         fluidAmtButtonSetActive();
         closeButtonX.gameObject.SetActive(true);
+        
+        
 
     }
 
